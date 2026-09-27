@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpheroNav AI - App Builder Platform</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0f172a; color: #fff; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 600px; margin: 50px auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        h1 { color: #38bdf8; }
+        textarea { width: 100%; height: 120px; background: #0f172a; color: #fff; border: 1px solid #475569; border-radius: 8px; padding: 12px; font-size: 16px; margin-top: 15px; }
+        button { background: #0284c7; color: #fff; border: none; padding: 12px 24px; font-size: 16px; border-radius: 8px; cursor: pointer; margin-top: 15px; width: 100%; }
+        button:hover { background: #0369a1; }
+        .bkash-section { margin-top: 30px; border-top: 1px solid #475569; padding-top: 20px; }
+        .bkash-btn { background: #e2136e; }
+        .bkash-btn:hover { background: #be125c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SpheroNav AI Builder</h1>
+        <p>Describe the app you want to build using AI assistance:</p>
+        <textarea placeholder="e.g., Build a modern food delivery app with dark mode..."></textarea>
+        <button onclick="alert('AI Engine is processing your prompt...')">Generate App</button>
+        
+        <div class="bkash-section">
+            <h3>Upgrade to Pro Plan</h3>
+            <p>Get unlimited AI generations via bKash Subscription</p>
+            <button class="bkash-btn" onclick="alert('Redirecting to bKash Payment Gateway...')">Pay with bKash</button>
+        </div>
+    </div>
+</body>
+</html>
