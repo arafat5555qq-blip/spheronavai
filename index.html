@@ -39,16 +39,16 @@
 <body class="min-h-screen flex flex-col">
 
     <!-- Top Navigation Bar -->
-    <header class="flex justify-between items-center px-6 py-4 border-b border-white/10 glass-panel sticky top-0 z-50">
-        <div class="flex items-center space-x-3">
-            <span class="text-xl font-extrabold bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">SpheroNav AI</span>
-            <span class="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Multi-Key Engine Active</span>
-        </div>
-        <div class="flex items-center space-x-4">
-            <span id="userEmailDisplay" class="text-xs text-gray-400 hidden md:inline">Guest User</span>
-            <button id="authBtn" class="bg-blue-600 hover:bg-blue-500 text-white text-xs md:text-sm px-4 py-2 rounded-xl font-semibold transition-all shadow-lg cursor-pointer">Sign In</button>
-        </div>
-    </header>
+<header class="flex justify-between items-center px-6 py-4 border-b border-white/10 glass-panel sticky top-0 z-50">
+    <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="SpheroNav Logo" class="w-9 h-9 rounded-full object-cover border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+        <span class="text-xl font-extrabold bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">SpheroNav AI</span>
+        <span class="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 hidden md:inline">Multi-Key Engine Active</span>
+    </div>
+    <div class="flex items-center space-x-4">
+        <span id="userEmailDisplay" class="text-xs text-gray-400 hidden md:inline">Guest User</span>
+        <button id="authBtn" class="bg-blue-600 hover:bg-blue-500 text-white text-xs md:text-sm px-4 py-2 rounded-xl font-semibold transition-all shadow-lg cursor-pointer">Sign In</button>
+    </div>
 
     <!-- Main Workspace -->
     <main class="flex-1 flex flex-col items-center justify-start p-4 md:p-10 max-w-5xl mx-auto w-full">
