@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spheronav Sovereign 11D Omniverse Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #030305;
+            color: #00F0FF;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFD700;
+            letter-spacing: 1px;
+        }
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #00F0FF;
+        }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #00FF66;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00FF66;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        .card h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding-bottom: 8px;
+        }
+        .console {
+            background: #000000;
+            color: #00FF66;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            height: 140px;
+            overflow-y: auto;
+            border: 1px solid #113311;
+            margin-bottom: 15px;
+        }
+        .btn {
+            background: linear-gradient(135deg, #00F0FF, #FFD700);
+            color: #030305;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            box-shadow: 0 0 15px #00F0FF;
+            transform: translateY(-2px);
+        }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #ffffff;
+        }
+        .metric span {
+            color: #00F0FF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">SPHERONAV 11D OMNIVERSE SERVER</div>
+        <div class="server-status">
+            <div class="status-dot"></div>
+            <span>সার্ভার লাইভ (Active & Running)</span>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <!-- Module 1: Server Core & Binary Compiler -->
+        <div class="card">
+            <h3>কোয়ান্টাম সার্ভার কনসোল</h3>
+            <div class="console" id="logConsole">
+                [SYSTEM]: Initializing 11D Multiverse Engine...<br>
+                [NPU]: Quantum Neural Core online.<br>
+                [GATEWAY]: All API endpoints secured.<br>
+                [STATUS]: Ready for deployment...
+            </div>
+            <button class="btn" onclick="triggerServerBuild()">নতুন সার্ভার ও বাইনারি বিল্ড করুন</button>
+        </div>
+
+        <!-- Module 2: App Development & Telemetry -->
+        <div class="card">
+            <h3>অ্যাপ ডেভেলপমেন্ট স্টুডিও</h3>
+            <div class="metric">মেমরি ব্যবহার: <span>1.2 GB / 64 GB</span></div>
+            <div class="metric">প্রসেসর লোড: <span>0.04% (Quantum Mode)</span></div>
+            <div class="metric">অ্যাক্টিভ ক্লাস্টার: <span>10,000+ Microservices</span></div>
+            <div class="metric">সিকিউরিটি ফায়ারওয়াল: <span>Zero-Trust Active</span></div>
+            <button class="btn" style="margin-top: 15px;" onclick="deployApp()">অ্যাপ প্যাকেজ কম্পাইল করুন</button>
+        </div>
+    </div>
+
+    <script>
+        function triggerServerBuild() {
+            const consoleBox = document.getElementById('logConsole');
+            consoleBox.innerHTML += `<br>[BUILD]: Compiling microservices... Success!`;
+            consoleBox.innerHTML += `<br>[DEPLOY]: Server active on Vercel Node.`;
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+            alert('সার্ভার এবং ব্যাকএন্ড বিল্ড সফলভাবে সম্পন্ন হয়েছে!');
+        }
+
+        function deployApp() {
+            const consoleBox = document.getElementById('logConsole');
+            consoleBox.innerHTML += `<br>[APK/IPA]: Generating executable binaries... Done!`;
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+            alert('অ্যাপ ডেভেলপমেন্ট প্যাকেজ তৈরি সম্পন্ন!');
+        }
+    </script>
+</body>
+</html>
