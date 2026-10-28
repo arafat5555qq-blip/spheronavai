@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpheroNav - Lovable Studio Core</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Gradient Glow Background like Lovable */
+        .glow-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60vh;
+            background: radial-gradient(circle at 50% 100%, #e935c1 0%, #3e4ce7 40%, rgba(0,0,0,0) 80%);
+            opacity: 0.85;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .workspace-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 8px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .avatar-ws {
+            width: 24px;
+            height: 24px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .profile-btn {
+            width: 42px;
+            height: 42px;
+            background: #f97316;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 10px;
+            height: 10px;
+            background: #ef4444;
+            border: 2px solid #000;
+            border-radius: 50%;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+            margin-top: -40px;
+        }
+
+        .ai-pill {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 6px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .ai-icons {
+            display: flex;
+            gap: 4px;
+        }
+
+        .ai-icon-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Prompt Box Area */
+        .prompt-card {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(24, 24, 27, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 16px 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            backdrop-filter: blur(20px);
+            position: relative;
+        }
+
+        textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 15px;
+            resize: none;
+            height: 60px;
+        }
+
+        textarea::placeholder {
+            color: #71717a;
+        }
+
+        .prompt-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .action-left, .action-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: #a1a1aa;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+        }
+
+        .build-dropdown-btn {
+            background: transparent;
+            border: none;
+            color: #f4f4f5;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .build-dropdown-btn:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Dropdown Menu Popup (Exact Lovable Design) */
+        .build-menu {
+            position: absolute;
+            bottom: -150px;
+            right: 50px;
+            width: 230px;
+            background: #18181b;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 50;
+        }
+
+        .build-menu.active {
+            display: flex;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .badge-free {
+            background: #2563eb;
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .menu-item-desc {
+            font-size: 11px;
+            color: #71717a;
+            margin-top: 2px;
+        }
+
+        /* Bottom Floating Bar */
+        .bottom-nav {
+            position: relative;
+            z-index: 10;
+            margin: 0 auto 24px auto;
+            background: rgba(24, 24, 27, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px;
+            border-radius: 30px;
+            display: flex;
+            gap: 6px;
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-btn {
+            padding: 10px 24px;
+            border-radius: 20px;
+            border: none;
+            background: transparent;
+            color: #71717a;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .nav-btn.active {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="workspace-btn">
+            <div class="avatar-ws">H</div>
+            <span>Hamim's Lovable</span>
+            <span style="font-size: 10px; color: #a1a1aa;">ˆ</span>
+        </div>
+        <div class="profile-btn">
+            H
+            <div class="notification-dot"></div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <div class="ai-pill">
+            <div class="ai-icons">
+                <span class="ai-icon-dot" style="background: #3b82f6;">✦</span>
+                <span class="ai-icon-dot" style="background: #10b981;">⚛</span>
+            </div>
+            <span>Add AI to your apps →</span>
+        </div>
+
+        <h1>What's the vision, Hamim?</h1>
+
+        <div class="prompt-card">
+            <textarea id="promptInput" placeholder="Create a presentation about..."></textarea>
+            
+            <div class="prompt-actions">
+                <div class="action-left">
+                    <button class="icon-btn">+</button>
+                </div>
+                <div class="action-right">
+                    <button class="build-dropdown-btn" onclick="toggleBuildMenu()">
+                        <span id="selectedMode">Build</span>
+                        <span style="font-size: 10px;">˅</span>
+                    </button>
+                    <button class="icon-btn">🎙</button>
+                </div>
+            </div>
+
+            <!-- Lovable Dropdown Menu -->
+            <div class="build-menu" id="buildMenu">
+                <div class="menu-item" onclick="selectMode('Build')">
+                    <div class="menu-item-header">
+                        <span>Build</span>
+                        <span style="color: #38bdf8;">✓</span>
+                    </div>
+                    <div class="menu-item-desc">Make changes directly</div>
+                </div>
+                <div class="menu-item" onclick="selectMode('Chat')">
+                    <div class="menu-item-header">
+                        <span>Chat</span>
+                        <span class="badge-free">Free</span>
+                    </div>
+                    <div class="menu-item-desc">Ask anything, explore ideas</div>
+                </div>
+                <div class="menu-item" onclick="selectMode('Plan')">
+                    <div class="menu-item-header">
+                        <span>Plan</span>
+                    </div>
+                    <div class="menu-item-desc">Detailed spec for complex builds</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <button class="nav-btn active">🏠</button>
+        <button class="nav-btn">㗊</button>
+        <button class="nav-btn">💬</button>
+    </div>
+
+    <script>
+        function toggleBuildMenu() {
+            const menu = document.getElementById('buildMenu');
+            menu.classList.toggle('active');
+        }
+
+        function selectMode(mode) {
+            document.getElementById('selected
